@@ -320,16 +320,18 @@ def understanding_lanes(img):
     lane_keeping_angle = give_lane_keeping_angle(mid_row, left_lane,  right_lane, lanes_frame)
     park_lane_frame = find_park_lane(img)
     #(find_distance(5, STOP_LINE))
-    return lanes_frame
+    return lanes_frame, stop_lane_frame
 
 
-imgpath = os.path.abspath(os.path.join(os.getcwd(), '..', 'Test_13_02_23_Frames/0.jpg'))
+imgpath = os.path.abspath(os.path.join(os.getcwd(), '..', 'Test_13_02_23_Frames/6510.jpg'))
 print(imgpath)
 img = cv2.imread(imgpath)
 cv2.imshow("input", img)
-lanes_frame = understanding_lanes(img)
+lanes_frame, stop_lane_frame = understanding_lanes(img)
 cv2.imwrite(os.path.abspath(os.path.join(os.getcwd(), 'output.jpg')), lanes_frame)
+cv2.imwrite(os.path.abspath(os.path.join(os.getcwd(), 'output_stop.jpg')), stop_lane_frame)
 cv2.imshow("output", lanes_frame)
+cv2.imshow("output_stop", stop_lane_frame)
 cv2.waitKey(0)
 
 
